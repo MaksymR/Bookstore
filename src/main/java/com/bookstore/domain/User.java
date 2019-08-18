@@ -1,6 +1,7 @@
 package com.bookstore.domain;
 
 
+import com.bookstore.domain.security.Authority;
 import com.bookstore.domain.security.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -100,26 +101,50 @@ public class User implements UserDetails {
         this.userRoles = userRoles;
     }
 
+    // Returns the authorities granted to the user
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        // The action to be performed for each element
+        userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
+        return authorities;
     }
 
+    /*
+     *  @return <code>true</code> if the user's account is valid (ie non-expired),
+     * <code>false</code> if no longer valid (ie expired)
+     */
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
+    /*
+     * Indicates whether the user is locked or unlocked. A locked user cannot be
+     * authenticated.
+     * @return <code>true</code> if the user is not locked, <code>false</code> otherwise
+     */
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
+    /*
+     * Indicates whether the user's credentials (password) has expired. Expired
+     * credentials prevent authentication.
+     * @return <code>true</code> if the user's credentials are valid (ie non-expired),
+     * <code>false</code> if no longer valid (ie expired)
+     */
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
+    /*
+     * Indicates whether the user is enabled or disabled. A disabled user cannot be
+     * authenticated.
+     * @return <code>true</code> if the user is enabled, <code>false</code> otherwise
+     */
     @Override
     public boolean isEnabled() {
         return enabled;
