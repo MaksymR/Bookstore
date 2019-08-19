@@ -3,6 +3,7 @@ package com.bookstore.controller;
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.service.UserService;
+import com.bookstore.service.impl.UserSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,10 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserSecurityService userSecurityService;
+
 
     @RequestMapping("/")
     public String index() {
