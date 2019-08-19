@@ -26,11 +26,11 @@
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li><a href="#tab-1" data-toggle="tab"><span
+                <li th:classappend="${classActiveNewAccount}? 'active'"><a href="#tab-1" data-toggle="tab"><span
                         style="color: red;">Create new account</span></a></li>
-                <li><a href="#tab-2" data-toggle="tab"><span
+                <li th:classappend="${classActiveLogin}? 'active'"><a href="#tab-2" data-toggle="tab"><span
                         style="color: red;">Log in</span></a></li>
-                <li><a href="#tab-3" data-toggle="tab"><span
+                <li th:classappend="${classActiveForgetPassword}? 'active'"><a href="#tab-3" data-toggle="tab"><span
                         style="color: red;">Forget Password</span></a></li>
             </ul>
 
@@ -38,7 +38,7 @@
             <div class="tab-content">
 
                 <!-- create new user pane -->
-                <div class="tab-pane fade" id="tab-1">
+                <div class="tab-pane fade" id="tab-1" th:classappend="${classActiveNewAccount}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
@@ -56,7 +56,7 @@
                                             required="required" type="text" class="form-control"
                                             id="email" name="email"/>
                                         <p style="color: #828282">A valid email address. All
-                                            emails from the system withll be sent to this address. The
+                                            emails from the system will be sent to this address. The
                                             email address is not made public and will only be used if
                                             you wish to receive a new password or wish to receive
                                             certain notification.</p>
@@ -98,7 +98,7 @@
                 </div>
 
                 <!-- forget password -->
-                <div class="tab-pane fade" id="tab-3">
+                <div class="tab-pane fade" id="tab-3" th:classappend="${classActiveForgetPassword}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
