@@ -2,6 +2,7 @@ package com.bookstore.service.impl;
 
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.PasswordResetToken;
+import com.bookstore.repository.PasswordResetTokenRepository;
 import com.bookstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
