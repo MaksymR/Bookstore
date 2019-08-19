@@ -51,17 +51,20 @@ public class HomeController {
             Model model) {
         PasswordResetToken passToken = userService.getPasswordResetToken(token);
 
+        // validation
         if (passToken == null) {
             String message = "Invalid Token.";
             model.addAttribute("message", message);
+            // redirect to "Error page"
             return "redirect:/badRequest";
         }
 
+        // find the user by token if it isn't "null"
         User user = passToken.getUser();
         String username = user.getUsername();
 
         /*
-         * Provides core user information
+         * Provides core user information for current session
          */
         UserDetails userDetails = userSecurityService.loadUserByUsername(username);
 
