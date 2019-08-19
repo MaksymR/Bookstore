@@ -45,10 +45,7 @@ public class HomeController {
     }
 
     @RequestMapping("/newUser")
-    public String newUser(
-            Locale locale,
-            @RequestParam("token") String token,
-            Model model) {
+    public String newUser(Locale locale, @RequestParam("token") String token, Model model) {
         PasswordResetToken passToken = userService.getPasswordResetToken(token);
 
         if (passToken == null) {
@@ -62,19 +59,13 @@ public class HomeController {
 
         UserDetails userDetails = userSecurityService.loadUserByUsername(username);
 
-        /*
-         * "UsernamePasswordAuthenticationToken" implementation that
-         *  is designed for simple presentation of a username and password
-         */
-        Authentication authentication = new UsernamePasswordAuthenticationToken(
-                userDetails,
-                userDetails.getPassword(),
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(),
                 userDetails.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        model.addAttribute("classActiveNewUser", true);
-        return "myAccount";
+        model.addAttribute("classActiveEdit", true);
+        return "myProfile";
     }
 
 }
