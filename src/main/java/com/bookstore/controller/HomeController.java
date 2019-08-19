@@ -45,7 +45,10 @@ public class HomeController {
     }
 
     @RequestMapping("/newUser")
-    public String newUser(Locale locale, @RequestParam("token") String token, Model model) {
+    public String newUser(
+            Locale locale,
+            @RequestParam("token") String token,
+            Model model) {
         PasswordResetToken passToken = userService.getPasswordResetToken(token);
 
         if (passToken == null) {
@@ -57,9 +60,18 @@ public class HomeController {
         User user = passToken.getUser();
         String username = user.getUsername();
 
+        /*
+         * Provides core user information
+         */
         UserDetails userDetails = userSecurityService.loadUserByUsername(username);
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(),
+        /*
+         * "UsernamePasswordAuthenticationToken" implementation that
+         *  is designed for simple presentation of a username and password
+         */
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                userDetails.getPassword(),
                 userDetails.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
