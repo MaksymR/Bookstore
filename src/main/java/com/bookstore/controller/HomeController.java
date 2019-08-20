@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -101,8 +102,30 @@ public class HomeController {
         role.setName("ROLE_USER");
         Set<UserRole> userRoles = new HashSet<>();
         userRoles.add(new UserRole(user, role));
+        // create user
         userService.createUser(user, userRoles);
 
+        /*
+         * generate token
+         *
+         * (java.util.UUID)represents an immutable universally unique identifier
+         */
+        String token = UUID.randomUUID().toString();
+        userService.createPasswordResetTokenForUser(user, token);
+
+        String appUrl = "http://"
+                + request.getServerName()
+                + ":"
+                + request.getServerPort()
+                + request.getContextPath();
+
+        SimpleMailMessage email = mailConstructor
+                .constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+
+        mailSender.send(email);
+
+        model.addAttribute("emailSent", true);
+        return "myAccount";
     }
 
     @RequestMapping("/newUser")
