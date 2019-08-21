@@ -49,7 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/js/**",
             "/image/**",
             "/",
-            "/myAccount"
+            "/newUser",
+            "/forgetPassword"
     };
 
     // the following configuration could be used to register
