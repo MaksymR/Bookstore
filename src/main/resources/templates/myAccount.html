@@ -85,7 +85,8 @@
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
-                                <form>
+                                <!--for working with user-->
+                                <form th:action="@{/login}" method="post">
                                     <div class="form-group">
                                         <label for="newUsername">* Username: </label> <input
                                             required="required" type="text" class="form-control"
