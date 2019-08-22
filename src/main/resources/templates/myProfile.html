@@ -11,7 +11,7 @@
             <h2 class="section-headline">
                 <h2 class="section-headline">
                     <!--"org.thymeleaf.expression.Strings -> public String toUpperCase(Object target)"-->
-                    <span th:text="${#strings.toUpperCase{user.username}}"></span>
+                    <span th:text="${#strings.toUpperCase(user.username)}"></span>
                 </h2>
             </h2>
         </div>
@@ -50,7 +50,7 @@
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
                                 <form th:action="@{/updateUserInfo}" method="post">
-                                    <input type="hidden" name="id" th:value="${user.id}">
+                                    <input type="hidden" name="id" th:value="${user.id}"/>
 
                                     <div class="bg-info" th:if="${updateUserInfo}">User info
                                         updated.
@@ -75,7 +75,7 @@
                                         <label for="userName">Username</label> '
                                         <input
                                                 type="text" class="form-control" id="userName"
-                                                name="userName" th:value="${user.userName}"/>
+                                                name="username" th:value="${user.username}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="currentPassword">Current Password</label> '
