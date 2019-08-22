@@ -112,17 +112,23 @@
                 </div>
 
                 <!-- forget password -->
-                <div class="tab-pane fade" id="tab-3" th:classappend="${classActiveForgetPassword}? 'in active'">
+                <div class="tab-pane fade" id="tab-3"
+                     th:classappend="${classActiveForgetPassword}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
-                                <form>
+                                <!--if email doesn't exist-->
+                                <div th:if="${emailNotExist}" class="alert alert-danger">Email doesn't exist.</div>
+                                <!--if email forgot then email with password is send-->
+                                <div th:if="${forgetPasswordEmailSent}" class="alert alert-success">Email sent.</div>
+                                <form th:action="@{/forgetPassword}" method="post">
                                     <div class="form-group">
                                         <label for="recoverEmail">* Your Email: </label> <input
                                             required="required" type="text" class="form-control"
                                             id="recoverEmail" name="email"/>
-                                        <p style="color: #828282">Enter your registered email address here.</p>
+                                        <p style="color: #828282">Enter your registered email
+                                            address here.</p>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Submit</button>
