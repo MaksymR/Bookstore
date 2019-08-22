@@ -50,7 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/image/**",
             "/",
             "/newUser",
-            "/forgetPassword"
+            "/forgetPassword",
+            "/login",
+            "/fonts/**"
     };
 
     // the following configuration could be used to register
