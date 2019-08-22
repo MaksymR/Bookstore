@@ -81,14 +81,20 @@ public class HomeController {
         model.addAttribute("email", userEmail);
         model.addAttribute("username", username);
 
+        /*
+         * if a user doesn't exist in the "DB" than the "if"-statement is working
+         */
         if (userService.findByUsername(username) != null) {
             model.addAttribute("usernameExists", true);
 
             return "myAccount";
         }
 
+        /*
+         * if an email doesn't exist in the "DB" than the "if"-statement is working
+         */
         if (userService.findByEmail(userEmail) != null) {
-            model.addAttribute("email", true);
+            model.addAttribute("emailExists", true);
 
             return "myAccount";
         }
