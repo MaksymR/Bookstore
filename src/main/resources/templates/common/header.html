@@ -54,7 +54,7 @@
                     <!--if the user isn't anonymous then -> to "myProfile-link"-->
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
                     <!--to "logout-link"-->
-                    <li><a sec:authorize="isAuthenticated()" href="@{/logout}">LOGOUT</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
