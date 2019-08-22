@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="common-header">
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -14,7 +14,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet"/>
 
-    <link rel="icon" href="/image/applie-touch-icon.png"/>
+    <link rel="icon" href="/image/apple-touch-icon.png"/>
 </head>
 
 <body>
@@ -49,8 +49,12 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">SHOPPING CART</a></li>
-                    <li><a href="#">MY ACCOUNT</a></li>
-                    <li><a href="#">LOGOUT</a></li>
+                    <!-- if the user is anonymous it will throw to "login-link"-->
+                    <li><a sec:authorize="isAnonymous()" th:href="@{/login}">MY ACCOUNT</a></li>
+                    <!--if the user isn't anonymous then -> to "myProfile-link"-->
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
+                    <!--to "logout-link"-->
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
