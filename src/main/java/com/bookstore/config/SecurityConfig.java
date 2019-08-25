@@ -52,7 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/newUser",
             "/forgetPassword",
             "/login",
-            "/fonts/**"
+            "/fonts/**",
+            "/bookshelf"
     };
 
     // the following configuration could be used to register
