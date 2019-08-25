@@ -23,10 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
+import java.awt.print.Book;
+import java.util.*;
 
 @Controller
 public class HomeController {
@@ -55,6 +53,13 @@ public class HomeController {
         // Add the supplied attribute under the supplied name
         model.addAttribute("classActiveLogin", true);
         return "myAccount";
+    }
+
+    @RequestMapping("/bookshelf")
+    public String bookshelf(Model model) {
+        List<Book> bookList = bookService.findAll();
+        model.addAttribute("bookList", bookList);
+        return "bookshelf";
     }
 
     /*
