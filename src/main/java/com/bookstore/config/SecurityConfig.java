@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /*
      * that will be accessed after the user "Login"
-     * */
+     */
     private static final String[] PUBLIC_MATCHERS = {
             "/css/**",
             "/js/**",
@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/login",
             "/fonts/**",
             "/bookshelf",
-            "/bookDetail"
+            "/bookDetail/**",
     };
 
     // the following configuration could be used to register
