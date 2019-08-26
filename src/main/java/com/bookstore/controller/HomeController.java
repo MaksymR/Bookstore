@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -64,6 +66,26 @@ public class HomeController {
         List<Book> bookList = bookService.findAll();
         model.addAttribute("bookList", bookList);
         return "bookshelf";
+    }
+
+    @RequestMapping("/bookDetail")
+    public String bookDetail(
+            /*
+             * "@PathParam" - used to annotate method parameters on POJO (Plain Old Java Object) endpoints
+             * "Principal" - the abstract notion of a principal, which can be used to represent
+             * any entity (user's login)
+             */
+            @PathParam("id") Long id, Model model, Principal principal
+    ) {
+        if (principal != null) {
+            String username = principal.getName();
+            User user = userService.findByUsername(username);
+            model.addAttribute("user", user);
+        }
+
+        Book book = bookService.findOne(id);
+
+        return "bookDetail";
     }
 
     /*
