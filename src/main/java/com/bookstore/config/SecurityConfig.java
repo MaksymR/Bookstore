@@ -44,6 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return SecurityUtility.passwordEncoder();
     }
 
+    /*
+     * that will be accessed after the user "Login"
+     * */
     private static final String[] PUBLIC_MATCHERS = {
             "/css/**",
             "/js/**",
@@ -52,7 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/newUser",
             "/forgetPassword",
             "/login",
-            "/fonts/**"
+            "/fonts/**",
+            "/bookshelf",
+            "/bookDetail"
     };
 
     // the following configuration could be used to register
