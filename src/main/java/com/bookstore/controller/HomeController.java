@@ -229,6 +229,28 @@ public class HomeController {
 
     }
 
+    @RequestMapping("/addNewShippingAddress")
+    public String addNewShippingAddress(
+            Model model, Principal principal
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        model.addAttribute("addNewShippingAddress", true);
+        model.addAttribute("classActiveShipping", true);
+
+        UserShipping userShipping = new UserShipping();
+        model.addAttribute("userShipping", userShipping);
+
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collections.sort(stateList);
+        model.addAttribute("stateList", stateList);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        /*model.addAttribute("orderList", user.orderList());*/
+
+        return "myProfile";
+    }
+
     /*
      * check the user's link
      */
