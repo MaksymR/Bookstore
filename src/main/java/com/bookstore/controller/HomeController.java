@@ -171,6 +171,23 @@ public class HomeController {
 
     }
 
+    @RequestMapping("/listOfCreditCards")
+    public String listOfCreditCards(
+            Model model, Principal principal, HttpServletRequest request
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        /*model.addAttribute("orderList", user.orderList());*/
+        model.addAttribute("listOfCreditcards", true);
+        model.addAttribute("classActiveBilling", true);
+        model.addAttribute("listOfShippingAddresses", true);
+
+        return "myProfile";
+
+    }
+
     /*
      * check the user's link
      */
