@@ -263,9 +263,33 @@ public class HomeController {
         User user = userService.findByUsername(principal.getName());
         UserPayment userPayment = userPaymentService.findById(creditCardId);
 
+        if (user.getId() != userPayment.getUser().getId()) {
+            return "badRequestPage";
+        }
+        /*
+         * when a secure test is passed
+         */
+        else {
+            model.addAttribute("user", user);
+            UserBilling userBilling = userPayment.getUserBilling();
+            model.addAttribute("userPayment", userPayment);
+            model.addAttribute("userBilling", userBilling);
+
+            List<String> stateList = USConstants.listOfUSStatesCode;
+            Collections.sort(stateList);
+            model.addAttribute("stateList", stateList);
+
+            model.addAttribute("addNewCreditCard", true);
+            model.addAttribute("classActiveBilling", true);
+            model.addAttribute("listOfShippingAddresses", true);
+
+            model.addAttribute("userPaymentList", user.getUserPaymentList());
+            model.addAttribute("userShippingList", user.getUserShippingList());
+
+            return "myProfile";
+        }
 
     }
-}
 
     @RequestMapping("/addNewShippingAddress")
     public String addNewShippingAddress(
