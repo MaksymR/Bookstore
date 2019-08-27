@@ -153,9 +153,9 @@ public class HomeController {
     public String myProfile(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
-		/*model.addAttribute("userPaymentList", user.getUserPaymentList());
-		model.addAttribute("userShippingList", user.getUserShippingList());
-		model.addAttribute("orderList", user.getOrderList());*/
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        /*model.addAttribute("orderList", user.getOrderList());*/
 
         UserShipping userShipping = new UserShipping();
         model.addAttribute("userShipping", userShipping);
