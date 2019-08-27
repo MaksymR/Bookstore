@@ -24,4 +24,6 @@ public interface UserService {
 
     void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 
+    void setUserDefaultPayment(Long userPaymentId, User user);
+
 }
