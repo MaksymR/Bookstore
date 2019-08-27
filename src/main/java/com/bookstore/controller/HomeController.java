@@ -170,7 +170,9 @@ public class HomeController {
 
     @RequestMapping("/listOfCreditCards")
     public String listOfCreditCards(
-            Model model, Principal principal, HttpServletRequest request
+            Model model,
+            Principal principal,
+            HttpServletRequest request
     ) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
@@ -187,7 +189,9 @@ public class HomeController {
 
     @RequestMapping("/listOfShippingAddresses")
     public String listOfShippingAddresses(
-            Model model, Principal principal, HttpServletRequest request
+            Model model,
+            Principal principal,
+            HttpServletRequest request
     ) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
@@ -204,7 +208,8 @@ public class HomeController {
 
     @RequestMapping("/addNewCreditCard")
     public String addNewCreditCard(
-            Model model, Principal principal
+            Model model,
+            Principal principal
     ) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
@@ -227,6 +232,27 @@ public class HomeController {
         return "myProfile";
 
     }
+
+    @RequestMapping(value = "/addNewCreditCard", method = RequestMethod.POST)
+    public String addNewCreditCard(
+            @ModelAttribute("userPayment") UserPayment userPayment,
+            @ModelAttribute("userBilling") UserBilling userBilling,
+            Principal principal,
+            Model model
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        userService.updateUserBilling(userBilling, userPayment, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveBilling", true);
+        model.addAttribute("listOfShippingAddresses", true);
+
+        return "myProfile";
+    }
+
 
     @RequestMapping("/addNewShippingAddress")
     public String addNewShippingAddress(
