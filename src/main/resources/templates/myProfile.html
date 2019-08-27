@@ -122,27 +122,25 @@
 
                 <!-- Order Information -->
                 <div class="tab-pane fade" id="tab-2"
-                     th:classappend="${classActiveEdit}? 'in active'">
+                     th:classappend="${classActiveOrder}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
-                                 style="background-color: #ededed; margin-top: 20px;">
-
-                            </div>
+                                 style="background-color: #ededed; margin-top: 20px;"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Order Information -->
+                <!-- Billing Information -->
                 <div class="tab-pane fade" id="tab-3"
-                     th:classappend="${classActiveEdit}? 'in active'">
+                     th:classappend="${classActiveBilling}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item active">
-                                        <a th:href="@{/listOfCreditCard}" th:style="${listOfCreditCards}? 'color:red'">List
+                                        <a th:href="@{/listOfCreditCards}" th:style="${listOfCreditCards}? 'color:red'">List
                                             of Credit Cards</a>
                                     </li>
                                     <li class="breadcrumb-item active">
