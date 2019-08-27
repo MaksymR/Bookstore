@@ -5,6 +5,7 @@ import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.BookService;
+import com.bookstore.service.UserPaymentService;
 import com.bookstore.service.UserService;
 import com.bookstore.service.impl.UserSecurityService;
 import com.bookstore.utility.MailConstructor;
@@ -48,6 +49,8 @@ public class HomeController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private UserPaymentService userPaymentService;
 
     @RequestMapping("/")
     public String index() {
