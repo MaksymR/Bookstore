@@ -1,6 +1,7 @@
 package com.bookstore.service.impl;
 
 import com.bookstore.domain.UserShipping;
+import com.bookstore.repository.UserShippingRepository;
 import com.bookstore.service.UserShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +14,7 @@ public class UserShippingServiceImpl implements UserShippingService {
     @Override
     public UserShipping findById(Long id) {
 
-        return null;
+        return userShippingRepository.findById(id).get();
 
     }
 
