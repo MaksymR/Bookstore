@@ -202,7 +202,7 @@ public class HomeController {
         model.addAttribute("userShippingList", user.getUserShippingList());
         /*model.addAttribute("orderList", user.orderList());*/
         model.addAttribute("listOfCreditCards", true);
-        model.addAttribute("classActiveBilling", true);
+        model.addAttribute("classActiveShipping", true);
         model.addAttribute("listOfShippingAddresses", true);
 
         return "myProfile";
@@ -296,7 +296,6 @@ public class HomeController {
         model.addAttribute("listOfCreditCards", true);
 
         return "myProfile";
-
     }
 
 
