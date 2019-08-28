@@ -20,4 +20,11 @@ public class UserShippingServiceImpl implements UserShippingService {
 
     }
 
+    @Override
+    public void removeById(Long id) {
+
+        userShippingRepository.deleteById(id);
+
+    }
+
 }
