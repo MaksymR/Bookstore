@@ -379,8 +379,8 @@
                                             th:style="${listOfShippingAddresses}? 'color:red'">List of
                                         Shipping Addresses</a></li>
                                     <li class="breadcrumb-item active"><a
-                                            th:href="@{/addNewCreditCard}"
-                                            th:style="${addNewCreditCard}? 'color:red'">Add(Update)
+                                            th:href="@{/addNewShippingAddress}"
+                                            th:style="${addNewShippingAddress}? 'color:red'">Add(Update)
                                         Shipping Address</a></li>
                                 </ol>
 
@@ -434,7 +434,7 @@
                                                                                             placeholder="Receiver Name"
                                                                                             th:name="userShippingName"
                                                                                             required="required"
-                                                                                            th:value="${userBilling.userShippingName}"/>
+                                                                                            th:value="${userShipping.userShippingName}"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="shippingAddress">* Street Address</label> <input
@@ -453,9 +453,10 @@
                                                     <label for="shippingCity">* City</label> <input type="text"
                                                                                                     class="form-control"
                                                                                                     id="shippingCity"
-                                                                                                    placeholder="Shipping City" th:name="userShippingCity"
+                                                                                                    placeholder="Shipping City"
+                                                                                                    th:name="userShippingCity"
                                                                                                     required="required"
-                                                                                                    th:value="${userShipping.userShippingCity}" />
+                                                                                                    th:value="${userShipping.userShippingCity}"/>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4">
@@ -469,7 +470,7 @@
                                                         select an option
                                                     </option>
                                                     <option th:each="state : ${stateList}" th:text="${state}"
-                                                            th:selected="(${userBilling.userBillingState}==${state})"></option>
+                                                            th:selected="(${userShipping.userShippingState}==${state})"></option>
                                                 </select>
                                                 </div>
                                             </div>
@@ -479,7 +480,7 @@
                                                         type="text" class="form-control" id="shippingZipcode"
                                                         placeholder="Shipping Zipcode"
                                                         th:name="userShippingZipcode" required="required"
-                                                        th:value="${userShipping.usershippingZipcode}"/>
+                                                        th:value="${userShipping.userShippingZipcode}"/>
                                                 </div>
                                             </div>
                                         </div>
