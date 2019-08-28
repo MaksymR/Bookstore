@@ -6,10 +6,7 @@ import com.bookstore.domain.UserPayment;
 import com.bookstore.domain.UserShipping;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.UserRole;
-import com.bookstore.repository.PasswordResetTokenRepository;
-import com.bookstore.repository.RoleRepository;
-import com.bookstore.repository.UserPaymentRepository;
-import com.bookstore.repository.UserRepository;
+import com.bookstore.repository.*;
 import com.bookstore.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserPaymentRepository userPaymentRepository;
+
+    @Autowired
+    private UserShippingRepository userShippingRepository;
 
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
@@ -112,6 +112,23 @@ public class UserServiceImpl implements UserService {
                 userPayment.setDefaultPayment(false);
                 userPaymentRepository.save(userPayment);
             }
+        }
+
+    }
+
+    @Override
+    public void setUserDefaultShipping(Long userShippingId, User user) {
+        List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
+
+        for (UserShipping userShipping : userShippingList) {
+            if (userShipping.getId() == userShippingId) {
+                userShipping.setUserShippingDefault(true);
+                userShippingRepository.save(userShipping);
+            } else {
+                userShipping.setUserShippingDefault(false);
+                userShippingRepository.save(userShipping);
+            }
+
         }
 
     }
