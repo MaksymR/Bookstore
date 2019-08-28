@@ -7,6 +7,7 @@ import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.BookService;
 import com.bookstore.service.UserPaymentService;
 import com.bookstore.service.UserService;
+import com.bookstore.service.UserShippingService;
 import com.bookstore.service.impl.UserSecurityService;
 import com.bookstore.utility.MailConstructor;
 import com.bookstore.utility.SecurityUtility;
@@ -51,6 +52,9 @@ public class HomeController {
 
     @Autowired
     private UserPaymentService userPaymentService;
+
+    @Autowired
+    private UserShippingService userShippingService;
 
     @RequestMapping("/")
     public String index() {
