@@ -217,7 +217,7 @@ public class HomeController {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("addNewCreditCard", true);
-        model.addAttribute("classActiveBilling", true);
+        model.addAttribute("classActiveShipping", true);
         model.addAttribute("listOfShippingAddresses", true);
 
         UserBilling userBilling = new UserBilling();
@@ -279,6 +279,26 @@ public class HomeController {
 
         return "myProfile";
     }
+
+    @RequestMapping(value = "/addNewShippingAddress", method = RequestMethod.POST)
+    public String addNewShippingAddressPost(
+            @ModelAttribute("userShipping") UserShipping userShipping,
+            Principal principal, Model model
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        userService.updateUserShipping(userShipping, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("listOfShippingAddresses", true);
+        model.addAttribute("classActiveShipping", true);
+        model.addAttribute("listOfCreditCards", true);
+
+        return "myProfile";
+
+    }
+
 
     @RequestMapping("/updateCreditCard")
     public String updateCreditCard(
