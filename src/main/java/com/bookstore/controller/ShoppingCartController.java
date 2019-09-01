@@ -3,6 +3,7 @@ package com.bookstore.controller;
 import com.bookstore.domain.CartItem;
 import com.bookstore.domain.ShoppingCart;
 import com.bookstore.domain.User;
+import com.bookstore.service.CartItemService;
 import com.bookstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class ShoppingCartController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CartItemService cartItemService;
 
     @RequestMapping("/cart")
     public String shoppingCart(Model model, Principal principal) {
