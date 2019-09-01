@@ -2,6 +2,7 @@ package com.bookstore.service.impl;
 
 import com.bookstore.domain.CartItem;
 import com.bookstore.domain.ShoppingCart;
+import com.bookstore.repository.ShoppingCartRepository;
 import com.bookstore.service.CartItemService;
 import com.bookstore.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private CartItemService cartItemService;
 
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
 
-    @Override
-    public void updateShoppingCart(ShoppingCart shoppingCart) {
-
+    public ShoppingCart updateShoppingCart(ShoppingCart shoppingCart) {
         BigDecimal cartTotal = new BigDecimal(0);
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
@@ -36,7 +37,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCartRepository.save(shoppingCart);
 
         return shoppingCart;
-
     }
 
 }
